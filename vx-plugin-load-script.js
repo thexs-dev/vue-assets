@@ -38,7 +38,7 @@ const LoadScript = {
 // export default LoadScript;
 
 /* plugin here without export, after trying all of the below ...
-from https://github.com/tserkov/vue-plugin-load-script version @1.2.0
+Thanks to https://github.com/tserkov/vue-plugin-load-script version @1.2.0
   <script src="https://cdn.jsdelivr.net/npm/vue-plugin-load-script"></script>
   <script type="module">import LoadScript from './vue-plugin-load-script.js';</script>
   <script type="module">import LoadScript from './node_modules/vue-plugin-load-script/index.js';</script>
