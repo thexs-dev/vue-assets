@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <base target="_blank">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ms-ui-sharing</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <v-app v-cloak id="app">
+    <v-toolbar app>
+      <v-toolbar-title>{{localize('Follow the steps below to complete ...')}}</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn icon @click="window.open('http://addon.thexs.ca/mapping-sheets');$gae('review');">
+        <v-icon :title="localize('my-review')">star_half</v-icon>
+      </v-btn>
+      <v-btn icon @click="window.open('https://www.thexs.ca/')">
+        <v-icon :title="localize('help')">help</v-icon>
+      </v-btn>
+    </v-toolbar>
+    <v-content>
+      <v-container fluid>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste illum quis tempora corrupti veniam, non earum
+          molestias esse consequatur officia nemo praesentium laborum rerum, cum beatae nobis, amet harum qui.
+        </p>
+        <v-layout row justify-end>
+          <v-btn v-if="itsme" color="secondary" @click="test">Test</v-btn>
+          <v-btn color="primary" :href="shareUrl" @click="$gae('share');">Share</v-btn>
+        </v-layout>
+      </v-container>
+    </v-content>
+  </v-app>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify"></script>
+  <script src="./data-local.js"></script>
+  <script src="./vx-plugin-load-script.js"></script>
+  <script src="./vx-analytics.js"></script>
+
+  <script>
+    var vueApp = new Vue({
+      el: '#app',
+      data: vueAppData,
+
+      mounted: function () {
+        Vue.use(vxAnalytics, gaData);
+
+        window.fetch(this.localesPath + this.language + ".json")
+          .then((response) => response.json())
+          .then((json) => this.localeResources = json[this.language]);
+      },
+
+      computed: {
+        shareUrl() { return "https://drive.google.com/file/d/" + this.fileId + "/view?userstoinvite=%20"; },
+      },
+
+      methods: {
+        localize(key) { return this.localeResources[key] || key },
+
+        test() {
+          console.log(this.localize("language"));
+
+          this.$gae("test");
+        }
+      }
+    });
+  </script>
+
+  <style>
+    html {
+      overflow-y: auto;
+    }
+
+    .theme--light.application {
+      background: white;
+    }
+
+    .theme--light.v-footer {
+      background: white;
+    }
+  </style>
+
+</body>
+
+</html>
