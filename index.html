@@ -54,7 +54,7 @@
       data: vueAppData,
 
       mounted: function () {
-        Vue.use(vxAnalytics, gaData);
+        Vue.use(VxAnalytics, gaData);
 
         window.fetch(this.localesPath + this.language + ".json")
           .then((response) => response.json())

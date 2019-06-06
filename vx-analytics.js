@@ -1,4 +1,4 @@
-const vxAnalytics = {
+const VxAnalytics = {
   install(Vue, options) {
     Vue.use(LoadScript);
     Vue.loadScript("https://www.googletagmanager.com/gtag/js?id=" + options.gaid)

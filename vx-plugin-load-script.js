@@ -1,3 +1,4 @@
+// Thanks to https://github.com/tserkov/vue-plugin-load-script version @1.2.0
 const LoadScript = {
   install: function (Vue) {
     Vue.loadScript = Vue.prototype.$loadScript = function (src) {
@@ -34,16 +35,4 @@ const LoadScript = {
       });
     };
   }
-};
-// export default LoadScript;
-
-/* plugin here without export, after trying all of the below ...
-Thanks to https://github.com/tserkov/vue-plugin-load-script version @1.2.0
-  <script src="https://cdn.jsdelivr.net/npm/vue-plugin-load-script"></script>
-  <script type="module">import LoadScript from './vue-plugin-load-script.js';</script>
-  <script type="module">import LoadScript from './node_modules/vue-plugin-load-script/index.js';</script>
-  <script type="module" src="./vue-plugin-load-script.js"></script>
-  <script>import LoadScript from 'vue-plugin-load-script';</script>
-  <script src='https://unpkg.com/vue-plugin-load-script'></script>
-  <script src='https://unpkg.com/vue-plugin-load-script@1.2.0/index.js'></script>
-*/
+}
